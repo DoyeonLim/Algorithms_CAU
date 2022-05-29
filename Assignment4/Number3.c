@@ -8,17 +8,6 @@ typedef struct {
 	int weight;
 }knapsack;
 
-int compare(knapsack n1, knapsack n2)
-{
-	float n1_val = n1.value / n1.weight;
-	float n2_val = n2.value / n2.weight;
-
-	if (n1_val > n2_val)
-		return FALSE;
-
-	return TRUE;
-}
-
 int main(void)
 {
 	knapsack lis[6];
@@ -43,7 +32,7 @@ int main(void)
 	{
 		for (int j = i; j < 6; j++)
 		{
-			if (compare(lis[i], lis[j]) == 1)
+			if (lis[i].value / lis[i].weight < lis[j].value / lis[j].weight)
 			{
 				int temp = lis[j].value;
 				lis[j].value = lis[i].value;
