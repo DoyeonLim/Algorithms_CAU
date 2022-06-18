@@ -5,6 +5,7 @@
 #define FALSE 0
 #define TRUE 1
 
+//0:s, 1:t, 2:x, 3:y, 4:z
 int vertex[MAX_VERTICES][MAX_VERTICES] = {
 	{INF, 3, INF, 5, INF},
 	{INF, INF, 6, 2, INF},
@@ -67,7 +68,7 @@ void print_node_cost()
 {
 	printf("<Source vertex s to vertice y>\n");
 
-	printf("3");
+	printf("Shortest path procedure(s:0, t:1, x:2, y:3, z:4) : 3");
 
 	int node = 3;
 
@@ -81,7 +82,7 @@ void print_node_cost()
 
 	printf("\n\n<Source vertex s to vertice z>\n");
 
-	printf("4");
+	printf("Shortest path procedure(s:0, t:1, x:2, y:3, z:4) : 4");
 
 	node = 4;
 
