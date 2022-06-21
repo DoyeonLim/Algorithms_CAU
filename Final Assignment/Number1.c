@@ -1,8 +1,13 @@
 #include <stdio.h>
 
-int cutting_rod(int price[11], int num, int rod[11])
+int rod[11] = { 0, };
+int price[11] = { 0, 1, 4, 5, 7, 9, 11, 13, 13, 15, 16 };
+
+int cutting_rod(int price[11], int num, int rod[11]) 
 {
 	int rev;
+	int ans;
+	int nth = -1;
 
 	if (rod[num] >= 0)
 	{
@@ -13,28 +18,36 @@ int cutting_rod(int price[11], int num, int rod[11])
 	{
 		rev = 0;
 	}
-
-	else
+		
+	else 
 	{
 		rev = -1e9;
 
-		for (int i = 1; i <= num; i++)
+		for (int i = 1; i <= num; i++) 
 		{
-			rev = -1e9;
+			ans = rev;
 
-			for (int i = 1; i <= num; i++)
+			if (rev > price[i] + cutting_rod(price, num - i, rod))
 			{
-				if (rev > price[i] + cutting_rod(price, num - i, rod))
-				{
-					rev = rev;
-				}
+				rev = rev;
+			}
 
-				else
-				{
-					rev = price[i] + cutting_rod(price, num - i, rod);
-				}
+			else
+			{
+				rev = price[i] + cutting_rod(price, num - i, rod);
+			}
+
+			if (ans != rev) 
+			{
+				nth = i;
 			}
 		}
+
+		if (nth != -1)
+		{
+			printf("Rod's length is %d(%d + %d) and value is %d.\n", num, nth, num - nth, rev);
+		}
+			
 	}
 
 	rod[num] = rev;
@@ -42,18 +55,16 @@ int cutting_rod(int price[11], int num, int rod[11])
 	return rev;
 }
 
-int main()
+int main() 
 {
-	int num = 10;
-	int rod[11] = { 0, };
-	int price[11] = { 0,1,4,5,7,9,11,13,13,15,16 };
+	int n = 10;
 
-	for (int i = 0; i <= num; i++)
+	for (int i = 0; i <= n; i++)
 	{
 		rod[i] = -1e9;
 	}
 
-	printf("maximum amount = %d", cutting_rod(price, num, rod));
+	printf("\n-> Maximum amount : %d", cutting_rod(price, n, rod));
 
 	return 0;
 }
