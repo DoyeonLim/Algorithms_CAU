@@ -5,7 +5,6 @@
 #define FALSE 0
 #define TRUE 1
 
-//0:s, 1:t, 2:x, 3:y, 4:z
 int vertex[MAX_VERTICES][MAX_VERTICES] = {
 	{INF, 3, INF, 5, INF},
 	{INF, INF, 6, 2, INF},
@@ -16,8 +15,9 @@ int vertex[MAX_VERTICES][MAX_VERTICES] = {
 
 int distance[MAX_VERTICES];
 int found[MAX_VERTICES];
+char node_name[MAX_VERTICES];
 
-int choose() 
+int choose()
 {
 	int min = INF;
 	int minpos = -1;
@@ -68,28 +68,28 @@ void print_node_cost()
 {
 	printf("<Source vertex s to vertice y>\n");
 
-	printf("Shortest path procedure(s:0, t:1, x:2, y:3, z:4) : 3");
+	printf("Shortest path procedure(s:0, t:1, x:2, y:3, z:4) : y");
 
 	int node = 3;
 
 	do
 	{
 		node = found[node];
-		printf(" << %d", node);
+		printf(" << %c", node_name[node]);
 	} while (node != 0);
 
 	printf("\nTotal cost = %d\n", distance[3]);
 
 	printf("\n\n<Source vertex s to vertice z>\n");
 
-	printf("Shortest path procedure(s:0, t:1, x:2, y:3, z:4) : 4");
+	printf("Shortest path procedure(s:0, t:1, x:2, y:3, z:4) : z");
 
 	node = 4;
 
-	do 
+	do
 	{
 		node = found[node];
-		printf(" << %d", node);
+		printf(" << %c", node_name[node]);
 	} while (node != 0);
 
 	printf("\nTotal cost = %d\n", distance[4]);
@@ -100,6 +100,12 @@ void print_node_cost()
 int main()
 {
 	path(0);
+
+	node_name[0] = 's';
+	node_name[1] = 't';
+	node_name[2] = 'x';
+	node_name[3] = 'y';
+	node_name[4] = 'z';
 
 	print_node_cost();
 
