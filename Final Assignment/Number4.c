@@ -1,4 +1,4 @@
-ï»¿#include <stdio.h>
+#include <stdio.h>
 
 #define INF 1000000
 #define TRUE 1
@@ -20,6 +20,7 @@ typedef struct edge
 
 int graph;
 edge node[5];
+char node_name[5];
 
 void bellmanFord()
 {
@@ -49,6 +50,31 @@ void bellmanFord()
 				}
 			}
 		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			if (node[i].s == INF && node[i].dst == -1)
+			{
+				printf("Vertex %c | d = INF, pi = NIL\n", node_name[i]);
+			}
+
+			else if (node[i].s == INF)
+			{
+				printf("Vertex %c | d = INF, pi = %c\n", node_name[i], node_name[node[i].dst]);
+			}
+
+			else if (node[i].dst == -1)
+			{
+				printf("Vertex %c | d = %2d, pi = NIL\n", node_name[i], node[i].s);
+			}
+
+			else
+			{
+				printf("Vertex %c | d = %2d, pi = %c\n", node_name[i], node[i].s, node_name[node[i].dst]);
+			}
+		}
+
+		printf("\n");
 	}
 
 	for (int i = 0; i < 5 && graph; i++)
@@ -68,21 +94,22 @@ void bellmanFord()
 
 int main()
 {
+	node_name[0] = 's';
+	node_name[1] = 't';
+	node_name[2] = 'x';
+	node_name[3] = 'y';
+	node_name[4] = 'z';
+
 	bellmanFord();
 
 	if (graph == 0)
 	{
-		printf("ìŒì˜ ì‚¬ì´í´ì´ ì¡´ì¬í•˜ëŠ” ê·¸ë˜í”„ì…ë‹ˆë‹¤.\n");
+		printf("-> À½ÀÇ »çÀÌÅ¬ÀÌ Á¸ÀçÇÏ´Â ±×·¡ÇÁÀÔ´Ï´Ù.\n");
 	}
 
 	else
 	{
-		printf("ìŒì˜ ì‚¬ì´í´ì´ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”, ì •ìƒì ì´ ê·¸ë˜í”„ì…ë‹ˆë‹¤.\n\n");
-
-		for (int i = 0; i < 5; i++)
-		{
-			printf("Vertex %2d  d = %2d, pi = %2d\n", i, node[i].s, node[i].dst);
-		}
+		printf("-> À½ÀÇ »çÀÌÅ¬ÀÌ Á¸ÀçÇÏÁö ¾Ê´Â, Á¤»óÀûÀÌ ±×·¡ÇÁÀÔ´Ï´Ù.\n\n");
 	}
 
 	return 0;
