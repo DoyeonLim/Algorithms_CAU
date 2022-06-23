@@ -1,4 +1,4 @@
-# Algorithm_03
+# Assignment5(MINST Tensorflow)
 
 ## 1. Model 1 : 3 Layers with 1 Convolution layer
 ![image](https://user-images.githubusercontent.com/64139953/172436197-45ee2994-c809-4882-8fc0-b2b1fcbf72de.png)
